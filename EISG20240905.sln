@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EISG20240905.API", "EISG20240905.API\EISG20240905.API.csproj", "{30593870-38A2-4B26-8976-BF6886DAED56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30593870-38A2-4B26-8976-BF6886DAED56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30593870-38A2-4B26-8976-BF6886DAED56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30593870-38A2-4B26-8976-BF6886DAED56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30593870-38A2-4B26-8976-BF6886DAED56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {887F8CD3-5EC4-4C98-AB20-47A873F7B4BA}
+	EndGlobalSection
+EndGlobal
