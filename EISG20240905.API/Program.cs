@@ -1,3 +1,8 @@
+using EISG20240905.API.Endpoints;
+using EISG20240905.API.Models.DAL;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<EISG20240905Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Conn"))
+);
+
+builder.Services.AddScoped<ProductEISGDAL>();
+
 var app = builder.Build();
+
+app.AddProductEISGEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -15,8 +28,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-
 
 app.Run();
 

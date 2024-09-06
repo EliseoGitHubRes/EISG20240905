@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EISG20240905.API", "EISG20240905.API\EISG20240905.API.csproj", "{30593870-38A2-4B26-8976-BF6886DAED56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EISG20240905.API", "EISG20240905.API\EISG20240905.API.csproj", "{30593870-38A2-4B26-8976-BF6886DAED56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EISG20240905.DTOs", "EISG20240905.DTOs\EISG20240905.DTOs.csproj", "{0E9D388B-E395-4461-88B9-D2992F031AD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{30593870-38A2-4B26-8976-BF6886DAED56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30593870-38A2-4B26-8976-BF6886DAED56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30593870-38A2-4B26-8976-BF6886DAED56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9D388B-E395-4461-88B9-D2992F031AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9D388B-E395-4461-88B9-D2992F031AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9D388B-E395-4461-88B9-D2992F031AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9D388B-E395-4461-88B9-D2992F031AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
