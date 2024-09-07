@@ -1,0 +1,113 @@
+﻿@page "/edit-product/{Id:int}"
+
+@using EISG20240905.DTOs.ProductEISGDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using System.ComponentModel.DataAnnotations;
+@using EISG20240905.AppWebBlazor.Data;
+
+@if (isSuccess == false && isError == false)
+{
+	<h3>Modificar Producto</h3>
+	<hr>
+
+	<EditForm Model="productEISGDTO" OnValidSubmit="Edit">
+		<DataAnnotationsValidator />
+		<div class="row">
+			<div class="col-6">
+				<div class="form-group">
+					<label for="NombreEISG">Nombre<span style="color:red;">*</span></label>
+					<InputText class="form-control" @bind-Value="productEISGDTO.NombreEISG" />
+					<ValidationMessage For="() => productEISGDTO.NombreEISG" />
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-group">
+					<label for="Precio">Precio<span style="color:red;">*</span></label>
+					<InputNumber class="form-control" @bind-Value="productEISGDTO.Precio" />
+					<ValidationMessage For="() => productEISGDTO.Precio" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label for="DescripcionEISG">Descripción</label>
+					<InputTextArea class="form-control" @bind-Value="productEISGDTO.DescripcionEISG" />
+					<ValidationMessage For="() => productEISGDTO.DescripcionEISG" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6" style="margin-top:10px;">
+				<button type="submit" style="width:100%;" class="btn btn-primary">Guardar</button>
+
+			</div>
+			<div class="form-group col-md-6" style="margin-top:10px;">
+				<NavLink href="/product-list" style="width:100%;" class="btn btn-secondary">Cancelar</NavLink>
+
+			</div>
+
+		</div>
+	</EditForm>
+}
+else if (isSuccess)
+{
+	productEISGDTO = new EditProdcutEISGDTO();
+	isError = false;
+	<p style="color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; margin-bottom: 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+		Producto se modifico con éxito.
+	</p>
+	<NavLink href="/product-list" style="background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 16px; text-transform: uppercase; text-decoration: none; transition: background-color 0.3s ease;">
+		Aceptar
+	</NavLink>
+}
+else if (isError)
+{
+	<p class="alert alert-error">Sucedio un error al intentar modificar. o no ha realizado ninguna modificacion al registro actual</p>
+	<NavLink href="/product-list" class="btn btn-primary">Aceptar</NavLink>
+}
+
+@code {
+	// Declaración de un parámetro llamado "Id" que puede ser pasado al componente
+	[Parameter]
+	public int Id { get; set; }
+
+	// Inyección de dependencia de ProductEISGService para
+	// acceder a los servicios relacionados con los productos
+	[Inject]
+	ProductEISGService productEISGService { get; set; }
+
+	// Declaración e inicialización de un objeto "editProdcut"
+	//  para almacenar los detalles del producto
+	EditProdcutEISGDTO productEISGDTO = new EditProdcutEISGDTO();
+
+	// Declaración de variables booleanas para manejar el estado de éxito y error
+	bool isSuccess = false;
+	bool isError = false;
+
+	// Método que se llama cuando se inicializa el componente
+	protected override async Task OnInitializedAsync()
+	{
+		// Realiza una llamada asincrónica para obtener los
+		// detalles del Producto por su Id
+		var productDetail = await productEISGService.GetById(Id);
+
+		// Inicializa el objeto "editProdcut" con los detalles del Producto obtenidos
+		productEISGDTO = new EditProdcutEISGDTO(productDetail);
+	}
+
+	// Método para editar el producto
+	private async Task Edit()
+	{
+		// Realiza una llamada asincrónica para editar la información del producto
+		int result = await productEISGService.Edit(productEISGDTO);
+
+		// Verifica si el resultado de la edición es diferente
+		// de cero (éxito) o igual a cero (error)
+		if (result != 0)
+			isSuccess = true;
+		else
+			isError = true;
+	}
+
+}

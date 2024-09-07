@@ -13,12 +13,12 @@
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<input asp-for="Id" type="hidden" />
 				<div class="form-group col-md-6">
-					<label asp-for="NombreEISG" class="control-label">Nombre<span style="color:red;">*</span></label>
+					<label asp-for="NombreEISG" class="control-label">Nombre</label>
 					<input asp-for="NombreEISG" disabled class="form-control" />
 					<span asp-validation-for="NombreEISG" class="text-danger"></span>
 				</div>
 				<div class="form-group col-md-6">
-					<label asp-for="Precio" class="control-label">Precio <span style="color:red;">*</span></label>
+					<label asp-for="Precio" class="control-label">Precio</label>
 					<input asp-for="Precio" type="number" disabled class="form-control" />
 					<span asp-validation-for="Precio" class="text-danger"></span>
 				</div>
@@ -34,8 +34,6 @@
 					<a class="btn btn-secondary" style="width:100%;" asp-action="Index">Cancelar</a>
 				</div>
 			</div>
-
-			
 		</form>
 	</div>
 </div>

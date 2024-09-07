@@ -1,0 +1,75 @@
+﻿@page "/product-details/{Id:int}"
+
+@using EISG20240905.DTOs.ProductEISGDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using EISG20240905.AppWebBlazor.Data;
+
+<h3>Detalle Producto</h3>
+<hr />
+<div class="row">
+	<div class="col-6">
+		<div class="form-group">
+			<label for="NombreEISG">Nombre</label>
+			<input type="text" class="form-control" disabled @bind="productEISGDTO.NombreEISG" />
+		</div>
+	</div>
+	<div class="col-6">
+		<div class="form-group">
+			<label for="Precio">Precio</label>
+			<input type="number" class="form-control" disabled @bind="productEISGDTO.Precio" />
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="form-group">
+			<label for="DescripcionEISG">Descripción</label>
+			<textarea disabled class="form-control" @bind="productEISGDTO.DescripcionEISG"></textarea>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="form-group col-md-6" style="margin-top:10px;">
+		<button class="btn btn-dark" style="width:100%;" @onclick="() => GoEdit(productEISGDTO.Id)">Modificar</button>
+	</div>
+	<div class="form-group col-md-6" style="margin-top:10px;">
+		<NavLink href="/product-list" style="width:100%;" class="btn btn-secondary">Cancelar</NavLink>
+
+	</div>
+</div>
+
+@code {
+	[Inject]
+	NavigationManager navigation { get; set; }
+
+	// Métodos para navegar a las páginas de edición, detalles y eliminación
+	private void GoEdit(int productEISGId)
+	{
+		navigation.NavigateTo($"/edit-product/{productEISGId}");
+	}
+	// Parámetro para recibir el ID del producto desde la llamada al componente
+	[Parameter]
+	public int Id { get; set; }
+
+	// Inyección de dependencia de ProductEISGService para acceder a sus métodos
+	[Inject]
+	ProductEISGService productEISGService { get; set; }
+
+	// Creación de una instancia de GetIdResultProductEISGDTO para almacenar los datos del producto
+	GetIdResultProductEISGDTO productEISGDTO = new GetIdResultProductEISGDTO();
+
+	/*
+			*  se utiliza para realizar inicializaciones o tareas
+			*  cuando se carga una página o componente de Blazor.
+			* Este método se llama automáticamente cuando el componente se está inicializando
+			*  antes de que se muestre en la interfaz de usuario.
+			*/
+	protected override async Task OnInitializedAsync()
+	{
+		// En el momento de inicialización del componente, llama al método GetById de
+		//  ProductEISGService para obtener los datos del producto con el ID proporcionado
+		productEISGDTO = await productEISGService.GetById(Id);
+	}
+
+}
