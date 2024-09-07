@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace EISG20240905.DTOs.ProductEISGDTOs
 {
-    public class GetIdResultProductEISGDTO
-    {
-        public int Id { get; set; }
+	public class GetIdResultProductEISGDTO
+	{
+		public int Id { get; set; }
 
-        [Display(Name = "Nombre")]
-        public string NombreEISG { get; set; }
+		[Display(Name = "Nombre")]
+		public string NombreEISG { get; set; }
 
-        [Display(Name = "Descripción")]
-        public string? DescripcionEISG { get; set; }
+		[Display(Name = "Descripción")]
+		public string? DescripcionEISG { get; set; }
 
-        public decimal Precio { get; set; }
-    }
+		public decimal Precio { get; set; }
+	}
 }
